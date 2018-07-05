@@ -11,8 +11,8 @@ strict:true, trailing:true, white:true */
     "_amznmwsDescription": "Amazon Marketplace Web Services",
     "_mwssellerid": "MWS Seller ID",
     "_mwsauthtoken": "MWS Authorization Token",
-    "_awsaccesskey": "AWS Access Key"
-
+    "_awsaccesskey": "AWS Access Key",
+    "_configure": "Configure"
   });
 
   if (typeof exports !== 'undefined') {

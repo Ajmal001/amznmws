@@ -16,7 +16,7 @@ trailing:true, white:true, strict: false*/
 		XV.appendExtension("XV.Workspace", extensions);
 	}
 
-	// ..........................................................
+		// ..........................................................
     // CONFIGURE
     //
 
@@ -26,7 +26,16 @@ trailing:true, white:true, strict: false*/
 		title: "_configure".loc() + " " + "_amznmws".loc(),
 		model: "XM.Amznmws",
 		components: [
-			//components will go here
+			{kind: "Panels", arrangerKind: "CarouselArranger",
+				fit: true, components: [
+					{kind: "XV.Groupbox", name: "mainPanel", components: [
+						{kind: "XV>ScrollableGroupbox", name: "mainGroup", fit: true, classes: "in-panel", components: [
+							{kind: "onyx.GroupboxHeader", content: "_amznmws".loc()},
+							{kind: "XV.AmznmwsConfigurationWidget"}
+						]}
+					]}
+				]
+			}
 		]});
 
 
