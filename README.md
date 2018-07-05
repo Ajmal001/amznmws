@@ -1,6 +1,6 @@
 Amazon MWS Extension
 
-##Contents##
+##Contents
 * client
   * en
     * strings.js - Creates list of relevant strings for use in other files
