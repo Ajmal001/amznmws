@@ -1,0 +1,25 @@
+<package id="foundation-database"
+         name="amznmws"
+         developer="xTuple"
+         descrip="xTuple ERP Discounts and Promotions package"
+         version="1.0.0-alpha"
+         updater="2.4.0">
+  <pkgnotes>This package creates the required database tables and functions for the xTuple ERP Amazon MWS extension.</pkgnotes>
+
+  <prerequisite type="license">
+    <message>This file is part of the xTuple ERP Enhanced Pricing Package for xTuple ERP, and is Copyright (c) 1999-2018 by OpenMFG LLC, d/b/a xTuple.  It is licensed to you under the xTuple End-User License Agreement ("the EULA"), the full text of which is available at www.xtuple.com/EULA.  While the EULA gives you access to source code and encourages your involvement in the development process, this Package is not free software.  By using this software, you agree to be bound by the terms of the EULA.</message>
+  </prerequisite>
+
+  <prerequisite type="Query" name="Checking for db version">
+    <query>SELECT compareVersion(fetchMetricText('ServerVersion'), '4.11.3') >= 0;
+    </query>
+    <message>This version of xTuple ERP Enhanced Pricing is compatible with xTuple ERP 4.11.3 and later.</message>
+  </prerequisite>
+
+  <comment>Triggers</comment>
+
+  <script file="package.sql"/>
+  <script file="priv.sql"/>
+  <createtable file="amznmws/tables/amznmws-info.sql" name="amznmws-info"/>
+  
+</package>
