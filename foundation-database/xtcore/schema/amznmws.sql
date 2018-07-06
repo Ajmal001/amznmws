@@ -1,1 +1,0 @@
-select xt.create_schema('amznmws');

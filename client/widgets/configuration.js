@@ -25,7 +25,7 @@
 					return this.getValue();
 				}
 			},
-			
+
 			{kind: "onyx.Button", name: "submit", classes: "icon-ok", ontap: "amznmwsConfigure"}
 		],
 	});
