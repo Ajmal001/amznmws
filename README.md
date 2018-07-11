@@ -1,14 +1,34 @@
 Amazon MWS Extension
 
 ## Contents
-* database - this directory is currently empty...
+* database
   * source
-    * public
-      * tables
-    * xt
+    * manifest.js
 * foundation-database
-  * xtcore
-    * schema
-      * amznmws.sql - Creates a schema called "amznmws"
+  * Makefile
+  * manifest.js
+  * package.sql
+  * package.xml
+  * priv.sql
+  * amznmws
+    * functions
     * tables
-      * amznmws-info.sql - Creates a table called "amznmws-info" in the amznmws schema
+      * pkgdict
+      * pkgmetasql
+        * amznmws-newUser
+        * amznmws-sellerInfo
+      * pkgscript
+        * amznmwsConfig.js
+        * amznmwsFeed.js
+      * pkguiform
+        * AmazonConfig
+        * AmazonFeed
+      * amznmws-info
+    * triggers
+    * types
+    * README
+* packages
+* CHANGELOG
+* README
+  
+    
