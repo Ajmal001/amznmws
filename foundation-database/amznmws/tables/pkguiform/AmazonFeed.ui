@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <comment>This file is part of the xTuple ERP: PostBooks Edition, a free and
+open source Enterprise Resource Planning software suite,
+Copyright (c) 1999-2014 by OpenMFG LLC, d/b/a xTuple.
+It is licensed to you under the Common Public Attribution License
+version 1.0, the full text of which (including xTuple-specific Exhibits)
+is available at www.xtuple.com/CPAL.  By using this software, you agree
+to be bound by its terms.</comment>
+ <class>newForm</class>
+ <widget class="QWidget" name="newForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>347</width>
+    <height>204</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>New Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="4" column="0">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="submitButton">
+       <property name="text">
+        <string>Submit</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>Cancel</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>96</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <layout class="QFormLayout" name="formLayout">
+     <item row="1" column="1">
+      <widget class="QComboBox" name="marketplaceBox">
+       <item>
+        <property name="text">
+         <string>United States</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Australia</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Brazil</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Canada</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>China</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>France</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Germany</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>India</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Italy</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Japan</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Mexico</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Spain</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>United Kingdom</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="XLabel" name="marketplaceLabel">
+       <property name="text">
+        <string>Marketplace: </string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="hashedKeyLabel">
+       <property name="text">
+        <string>Hashed Secret Key: </string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="hashedKeyField"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="hashVersionLabel">
+       <property name="text">
+        <string>Hash Version: </string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QComboBox" name="hashVersionBox">
+       <item>
+        <property name="text">
+         <string>HmacSHA256</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>HmacSHA1</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="feedContentLabel">
+       <property name="text">
+        <string>Feed Content (XML):</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="FileCluster" name="feedContentFile"/>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="XLabel" name="xlabel">
+     <property name="font">
+      <font>
+       <family>Open Sans,Helvetica,Verdana,sans-serif</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Submit Amazon MWS Feed</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>FileCluster</class>
+   <extends>QWidget</extends>
+   <header>filecluster.h</header>
+  </customwidget>
+  <customwidget>
+   <class>XLabel</class>
+   <extends></extends>
+   <header>xlabel.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

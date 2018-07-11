@@ -1,0 +1,6 @@
+﻿-- Group: amznmws
+-- Name:  sellerInfo
+-- Notes: Stores seller info for AmazonMWS
+
+INSERT INTO amznmwsInfo
+VALUES ( <? value ("user") ?>, <? value ("sellerID") ?>, <? value ("MWS Auth") ?>, <? value ("MWSAccessKey") ?>);

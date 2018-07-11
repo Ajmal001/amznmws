@@ -1,0 +1,6 @@
+﻿-- Group: amznmws
+-- Name:  newUser
+-- Notes: Creates new user in amznmws table
+
+INSERT INTO "amznmwsInfo"
+VALUES (SELECT user, <? value ("SellerId") ?>, <? value ("MWSAuth") ?>, <? value ("MWSAccessKey") ?>);
