@@ -34,6 +34,26 @@ function submit() {
   var price = priceField.text;
   var manufacturer = manufacturerField.text;
 
+  var date = new Date();
+  var year = date.getFullYear();
+  var month = date.getMonth();
+  var day = date.getDate();
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var seconds = date.getSeconds();
+  var offset = date.getTimezoneOffset()/60;
+
+  var dateString = year + '-' + month + '-' + day + 'T' + hours + ':' + minutes + ':' + seconds + '-' + offset;
+
+  
+  //get variables from the metric table
+  try {
+    var server = metrics.value("amznmwsServer");
+    var accessKey = metrics.value("amznmwsAccessKey");
+    var authToken = metrics.value("amznmwsAuth");
+    var sellerId = metrics.value("amznmwsSellerId");
+  }
+  catch (e) { print(e); }
 
   //set endpoints based on marketplace region
   if (marketplace == "United States" || marketplace == "Canada" || marketplace 	== "Mexico" || marketplace == "Brazil"){
@@ -112,10 +132,15 @@ function submit() {
   print ("productBrand = " + productBrand);
   print ("productDescription = " + productDescription);
   print ("currency = " + currency);
-  print ("manufacturer = " + manufacturer); 
+  print ("manufacturer = " + manufacturer);
+  print ("server = " + server);
+  print ("Access Key = " + accessKey);
+  print ("Auth Token = " + authToken);
+  print ("Seller ID = " + sellerId); 
+  print ("date = " + dateString);
 
 //construct XML document from parameters
-     var s = '<?xml version = \"1.0\" encoding=\"iso-8859-1\"?>'
+  var feedContent = '<?xml version = \"1.0\" encoding=\"iso-8859-1\"?>'
 	 + '<AmazonEnvelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"'
 	 + 'xsi: noNamespaceSchemaLocation = \"amzn-envelope.xsd\">'
 	 + '<Header>'
@@ -147,7 +172,28 @@ function submit() {
 	 + '</Message>'
 	 + '</AmazonEnvelope>';
 
-  print(s);
+  print(feedContent);
+
+//.......................................................
+//this is where the feed content and signatures are going to need to be hashed
+
+  var postRequest = 'POST /?AWSAccessKeyId=' + accessKey
+  + '&Action=Submitfeed'
+  + '&Merchant=' + sellerId
+  + '&MWSAuthToken=' + authToken
+  + '&SignatureVersion=2'
+  + '&Timestamp=' + dateString
+  + '&Version=2009-10-01'
+  + '&ContentMD5Value=[Hashed feed content here!]'
+  + '&Signature=[Hashed Secret key here!]'
+  + '&SignatureMethod=HmacSHA256'
+  + '&FeedType="_POST_PRODUCT_DATA_'
+  + '&PurgeAndReplace=false HTTP/1.1'
+  + 'Host: mws.amazonservices.com'
+  + 'Content-Type: text/xml';
+
+  print(postRequest);
+
 }
 
 
