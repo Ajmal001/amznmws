@@ -4,7 +4,6 @@ var MWSAuthField = mywindow.findChild("MWSAuthField");
 var MWSAccessKeyField = mywindow.findChild("MWSAccessKeyField");
 var ServerField = mywindow.findChild("ServerField");
 var TestingCheckbox = mywindow.findChild("TestingCheckbox");
-var NewUserCheckbox = mywindow.findChild("NewUserCheckbox");
 var SubmitButton = mywindow.findChild("SubmitButton");
 var CancelButton = mywindow.findChild("CancelButton");
 
@@ -12,11 +11,6 @@ var CancelButton = mywindow.findChild("CancelButton");
 TestingCheckbox.setChecked(false);
 var testingChecked = false;
 TestingCheckbox.clicked.connect(toggleTesting);
-
-//create a variable for new user that changes when checkbox changes
-NewUserCheckbox.setChecked(false);
-var newUserChecked = false;
-NewUserCheckbox.clicked.connect(toggleNewUser);
 
 //submit and cancel button functions
 SubmitButton.clicked.connect(query);
@@ -33,46 +27,16 @@ function toggleNewUser() {
   else { newUserChecked = true; }
   print (newUserChecked);
 }
-//returns list of parameters for query
-function getParams() {
-try{
-  var params = new Object;
-  params.SellerId = SellerIdField.text;
-  params.MWSAuth = MWSAuthField.text;
-  params.MWSAccessKey = MWSAccessKeyField.text;
-  params.Server = ServerField.text;
-  params.Testing = testingChecked;
-  params.NewUser = newUserChecked;
 
-  print("params.SellerId = " + params.SellerId);
-  print("params.MWSAuth = " + params.MWSAuth);
-  print("params.MWSAccessKey = " + params.MWSAccessKey);
-  print("params.Server = " + params.Server);
-  print("params.Testing = " + params.Testing);
 
-  return params;
-} catch (e) { print (e); }
-}
-
-//creates new entry in amznmws table
-function newUser(){
-  print("newUser called")
-  var params = getParams();
-  try{
-    var qry = toolbox.executeDbQuery("amznmws", "newUser", params);
-  } catch (e) { print (e); }
-}
 
 //queries database, should input values in amznmws table
 function query() {
-  if (newUserChecked){
-    newUser();
-  }
-  else{
-    var params = getParams();
     print ("query called");
     try{
-      var qry = toolbox.executeDbQuery("amznmws", "sellerInfo", params);
+      metrics.set("amznmwsSellerId", SellerIdField.text);
+      metrics.set("amznmwsAuth", MWSAuthField.text);
+      metrics.set("amznmwsAccessKey", MWSAccessKeyField.text);
+      metrics.set("amznmwsServer", ServerField.text);
     } catch (e) { print (e); }
-  }
 }

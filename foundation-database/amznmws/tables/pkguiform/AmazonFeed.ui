@@ -13,15 +13,15 @@ to be bound by its terms.</comment>
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>347</width>
-    <height>204</height>
+    <width>521</width>
+    <height>487</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>New Form</string>
+   <string>Submit Amazon MWS Feed</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="4" column="0">
+   <item row="6" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QPushButton" name="submitButton">
@@ -47,7 +47,7 @@ to be bound by its terms.</comment>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
-         <width>96</width>
+         <width>229</width>
          <height>20</height>
         </size>
        </property>
@@ -55,8 +55,31 @@ to be bound by its terms.</comment>
      </item>
     </layout>
    </item>
+   <item row="0" column="0">
+    <widget class="XLabel" name="xlabel">
+     <property name="font">
+      <font>
+       <family>Open Sans,Helvetica,Verdana,sans-serif</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Submit Amazon MWS Feed</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
    <item row="1" column="0">
     <layout class="QFormLayout" name="formLayout">
+     <item row="1" column="0">
+      <widget class="XLabel" name="marketplaceLabel">
+       <property name="text">
+        <string>Marketplace: </string>
+       </property>
+      </widget>
+     </item>
      <item row="1" column="1">
       <widget class="QComboBox" name="marketplaceBox">
        <item>
@@ -126,83 +149,142 @@ to be bound by its terms.</comment>
        </item>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="XLabel" name="marketplaceLabel">
-       <property name="text">
-        <string>Marketplace: </string>
-       </property>
-      </widget>
-     </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="hashedKeyLabel">
+      <widget class="QLabel" name="secretKeyLabel">
        <property name="text">
-        <string>Hashed Secret Key: </string>
+        <string>Secret Key: </string>
        </property>
       </widget>
      </item>
      <item row="2" column="1">
-      <widget class="QLineEdit" name="hashedKeyField"/>
+      <widget class="QLineEdit" name="secretKeyField"/>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="hashVersionLabel">
+      <widget class="XLabel" name="productIdLabel">
        <property name="text">
-        <string>Hash Version: </string>
+        <string>Product ID (ASIN):</string>
        </property>
-      </widget>
-     </item>
-     <item row="3" column="1">
-      <widget class="QComboBox" name="hashVersionBox">
-       <item>
-        <property name="text">
-         <string>HmacSHA256</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>HmacSHA1</string>
-        </property>
-       </item>
       </widget>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="feedContentLabel">
+      <widget class="XLabel" name="productTitleLabel">
        <property name="text">
-        <string>Feed Content (XML):</string>
+        <string>Product Title: </string>
        </property>
       </widget>
      </item>
+     <item row="5" column="0">
+      <widget class="XLabel" name="productBrandLabel">
+       <property name="text">
+        <string>Product Brand (if any): </string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="XLabel" name="productDescriptionLabel">
+       <property name="text">
+        <string>Product Description:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="0">
+      <widget class="XLabel" name="xlabel_4"/>
+     </item>
+     <item row="11" column="0">
+      <widget class="XLabel" name="xlabel_3"/>
+     </item>
+     <item row="12" column="0">
+      <widget class="XLabel" name="xlabel_2"/>
+     </item>
+     <item row="7" column="0">
+      <widget class="QLabel" name="currencyLabel">
+       <property name="text">
+        <string>Currency:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="7" column="1">
+      <widget class="QComboBox" name="currencyBox">
+       <item>
+        <property name="text">
+         <string>USD</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>JPY</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>GBP</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>EUR</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>CND</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <widget class="QLineEdit" name="priceField"/>
+     </item>
+     <item row="8" column="0">
+      <widget class="QLabel" name="priceLabel">
+       <property name="text">
+        <string>Price</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="0">
+      <widget class="QLabel" name="manufacturerLabel">
+       <property name="text">
+        <string>Manufacturer</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="1">
+      <widget class="QLineEdit" name="manufacturerField"/>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="productIdField"/>
+     </item>
      <item row="4" column="1">
-      <widget class="FileCluster" name="feedContentFile"/>
+      <widget class="QLineEdit" name="productTitleField"/>
+     </item>
+     <item row="5" column="1">
+      <widget class="QLineEdit" name="productBrandField"/>
+     </item>
+     <item row="6" column="1">
+      <widget class="QTextEdit" name="productDescriptionField">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
      </item>
     </layout>
-   </item>
-   <item row="0" column="0">
-    <widget class="XLabel" name="xlabel">
-     <property name="font">
-      <font>
-       <family>Open Sans,Helvetica,Verdana,sans-serif</family>
-       <pointsize>10</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Submit Amazon MWS Feed</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>FileCluster</class>
-   <extends>QWidget</extends>
-   <header>filecluster.h</header>
-  </customwidget>
-  <customwidget>
    <class>XLabel</class>
-   <extends></extends>
+   <extends>QLabel</extends>
    <header>xlabel.h</header>
   </customwidget>
  </customwidgets>

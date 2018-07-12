@@ -1,8 +1,13 @@
 ﻿//variables for UI objects
 var marketplaceBox = mywindow.findChild("marketplaceBox");
-var hashedKeyField = mywindow.findChild("hashedKeyField");
-var hashVersionBox = mywindow.findChild("hashVersionBox");
-var feedContentFile = mywindow.findChild("feedContentFile");
+var secretKeyField = mywindow.findChild("secretKeyField");
+var productIdField = mywindow.findChild("productIdField");
+var productTitleField = mywindow.findChild("productTitleField");
+var productBrandField = mywindow.findChild("productBrandField");
+var productDescriptionField = mywindow.findChild("productDescriptionField");
+var currencyBox = mywindow.findChild("currencyBox");
+var priceField = mywindow.findChild("priceField");
+var manufacturerField = mywindow.findChild("manufacturerField");
 var submitButton = mywindow.findChild("submitButton");
 var cancelButton = mywindow.findChild("cancelButton");
 
@@ -20,9 +25,15 @@ var marketplaceId;
 function submit() {
   //variables for what the UI objects contain
   var marketplace = marketplaceBox.currentText;
-  var hashedKey = hashedKeyField.text;
-  var hashVersion = hashVersionBox.currentText;
-  var feedDir = feedContentFile.text;
+  var secretKey = secretKeyField.text;
+  var productId = productIdField.text;
+  var productTitle = productTitleField.text;
+  var productBrand = productBrandField.text;
+  var productDescription = productDescriptionField.plainText;
+  var currency = currencyBox.currentText;
+  var price = priceField.text;
+  var manufacturer = manufacturerField.text;
+
 
   //set endpoints based on marketplace region
   if (marketplace == "United States" || marketplace == "Canada" || marketplace 	== "Mexico" || marketplace == "Brazil"){
@@ -95,7 +106,76 @@ function submit() {
   print ("marketplace = " + marketplace);
   print ("endpoint = " + endpoint);
   print ("marketplaceId = " + marketplaceId);
-  print ("hashedKey = " + hashedKey);
-  print ("hashVersion = " + hashVersion);
-  print ("feedDir = " + feedDir);
+  print ("secretKey = " + secretKey);
+  print ("productId = " + productId);
+  print ("productTitle = " + productTitle);
+  print ("productBrand = " + productBrand);
+  print ("productDescription = " + productDescription);
+  print ("currency = " + currency);
+  print ("manufacturer = " + manufacturer); 
+
+//construct XML document from parameters
+     var s = '<?xml version = \"1.0\" encoding=\"iso-8859-1\"?>'
+	 + '<AmazonEnvelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"'
+	 + 'xsi: noNamespaceSchemaLocation = \"amzn-envelope.xsd\">'
+	 + '<Header>'
+	 + '<DocumentVersion>1.01</DocumentVersion>'
+	 + '</Header>'
+	 + '<MessageType>Product</MessageType>'
+	 + '<PurgeAndReplace>false</PurgeAndReplace>'
+	 + '<Message>'
+	 + '<MessageID>1</MessageId>'
+	 + '<OperationType>Update</OperationType>'
+	 + '<Product>'
+	 + '<StandardProductID>'
+	 + '<Type>ASIN</Type>'
+	 + wrap("Value", productId)
+	 + '</StandardProductID>'
+	 + '<ProductTaxCode>A_GEN_NOTAX</ProductTaxCode>'
+	 + '<DescriptionData>'
+	 + wrap("Title", productTitle)
+	 + wrap("Brand", productBrand)
+	 + wrap("Description", productDescription)
+	 + '<MSRP currency = \"'
+	 + currency
+	 + '\">' 
+	 + price
+	 + '</MSRP>'
+	 + wrap("Manufacturer", manufacturer)
+	 + '</DescriptionData>'
+	 + '</Product>'
+	 + '</Message>'
+	 + '</AmazonEnvelope>';
+
+  print(s);
 }
+
+
+function wrap(key, value, attributes) {
+  var attributeString = "";
+  if (Array.isArray(attributes))
+    attributeString = attributes.map(function (e) {
+                                         if (e.key && e.value)
+
+                                           return e.key + '="' + e.value + '"';
+
+                                         else if (typeof e == "string")
+
+                                             return e;
+
+                                         return String(e);
+
+                                       })
+
+                                  .join(" ");
+
+
+
+    return '<' + key
+
+               + ( attributeString ? (' ' + attributeString) : '')
+
+               + '>' + value + '</' + key + '>';
+
+}
+
