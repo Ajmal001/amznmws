@@ -174,8 +174,23 @@ function submit() {
 
   print(feedContent);
 
-//.......................................................
-//this is where the feed content and signatures are going to need to be hashed
+/*This causes the program to halt. I'm not certain that I'm using the QCryptographicHash class properly here
+*/
+
+try{
+
+  var hasher = new QCryptographicHash(1);
+  print("QCryptographicHash created");
+  var contentQByteArray = fromHex(contentFeed.toUtf8());
+  var contentMD5Hash = hasher.hash(contentQByteArray, 1);
+  print("contentMD5Hash created");
+  print(contentMD5Hash);
+  var contentMD5Base64 = contentMD5Hash.toBase64();
+  print("contentMD5Base64 created");
+  print("contentMD5Base64 = " + contentMD5Base64);
+} catch(e) { print(e); } 
+
+
 
   var postRequest = 'POST /?AWSAccessKeyId=' + accessKey
   + '&Action=Submitfeed'
@@ -184,8 +199,7 @@ function submit() {
   + '&SignatureVersion=2'
   + '&Timestamp=' + dateString
   + '&Version=2009-10-01'
-  + '&ContentMD5Value=[Hashed feed content here!]'
-  + '&Signature=[Hashed Secret key here!]'
+  + '&ContentMD5Value= contentMD5Base64'
   + '&SignatureMethod=HmacSHA256'
   + '&FeedType="_POST_PRODUCT_DATA_'
   + '&PurgeAndReplace=false HTTP/1.1'
@@ -194,6 +208,24 @@ function submit() {
 
   print(postRequest);
 
+/*more hashing, causes halting
+  var hasher2 = new QCryptographicHash(Sha256);
+  hasher2.addData(postRequest);
+  var postRequestHash = hasher.result();
+  var postRequestBase64 = postRequestHash.toBase64();
+  print("postRequestBase64 = " + postRequestBase64);
+*/
+
+
+  var manager = new QNetworkAccessManager;
+  print("manager set");
+  var request = new QNetworkRequest;
+  request.setURL = 'https://mws.amazonservices.com';
+  print("request set");
+  try{
+  manager.post(request(QUrl("https://mws.amazonservices.com")));
+  print("request sent");
+  } catch (e) { print(e); }
 }
 
 
